@@ -1,3 +1,6 @@
+"""Functions to login in to the CPL website.
+"""
+
 import cookielib
 import ConfigParser
 import urllib
@@ -11,28 +14,36 @@ HEADERS = {
         'User-Agent' : USER_AGENT
 }
 
-def getLoginInfo():
+def get_login_info():
+    """Read login credentail from a config file.
+    """
     config = ConfigParser.RawConfigParser()
     config.read(LOGIN_FILE)
     card = config.get(LOGIN_SECTION, 'card_number')
-    zip = config.get(LOGIN_SECTION, 'zip')
-    return card, zip
+    zip_code = config.get(LOGIN_SECTION, 'zip')
+    return card, zip_code
 
-def getOpener():
+def get_opener():
+    """Return a url opener that handles cookies.
+    """
     cookie_jar = cookielib.CookieJar()
     opener = urllib2.build_opener(urllib2.HTTPCookieProcessor(cookie_jar))
     return opener
 
 def login():
-    opener = getOpener()
-    card, zip = getLoginInfo()
+    """Login to the My CPL page.  Returns an opener
+    that can make requests on other CPL pages while 
+    logged in as a user.
+    """
+    opener = get_opener()
+    card, zip_code = get_login_info()
     values = {
             'loginButton': 'Login',
             'loginButton.x': 45,
             'loginButton.y': 19,
             'myCplLogin': 'Login',
             'patronId': card,
-            'zipCode': zip,
+            'zipCode': zip_code,
     }
     data = urllib.urlencode(values)
     req = urllib2.Request(LOGIN_URL, data, HEADERS)
