@@ -1,0 +1,13 @@
+This is a little script that will renew your books from the Chicago Public Library.
+Shh!!!! Don't tell Rahm!!!
+
+Anyway, to use it, edit login.ini to contain your card number and zip code.
+It's the same stuff you use to log onto the CPL website.
+
+Then, add a cron job and never worry about library fines again!
+(Except for the three-renewal limit.)
+
+Example crontab!
+0 10 12 * * cd <path_to_wherever>/Chicago-Public-Library-Tool/ && ./renew
+
+But seriously, finish your books.  Return your books.  Libraries are awesome.
