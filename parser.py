@@ -45,7 +45,12 @@ def renew_books():
     opener = login.login()
     page = get_summary_page(opener)
     renew_links = get_renew_links(page)
-    for renew_link in renew_links:
-        renew_link = ROOT_URL + renew_link
-        request = urllib2.Request(renew_link, None, login.HEADERS)
-        opener.open(request)
+    if renew_links:
+        for renew_link in renew_links:
+            item_number = renew_link.split('/')[-2]
+            print('renewing item %s' % item_number)
+            renew_link = ROOT_URL + renew_link
+            request = urllib2.Request(renew_link, None, login.HEADERS)
+            opener.open(request)
+    else:
+        print('nothing to renew')
