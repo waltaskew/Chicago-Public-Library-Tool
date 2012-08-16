@@ -49,6 +49,3 @@ def renew_books():
         renew_link = ROOT_URL + renew_link
         request = urllib2.Request(renew_link, None, login.HEADERS)
         opener.open(request)
-
-if __name__ == '__main__':
-    renew_books()
