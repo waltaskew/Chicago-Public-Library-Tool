@@ -8,7 +8,7 @@ import urllib2
 
 LOGIN_FILE = 'login.ini'
 LOGIN_SECTION = 'login'
-LOGIN_URL = 'http://www.chipublib.org/mycpl/login/'
+LOGIN_URL = 'https://www.chipublib.org/mycpl/login/'
 USER_AGENT = 'Mozilla/4.0 (compatible; MSIE 5.5; Windows NT)'
 HEADERS = {
         'User-Agent' : USER_AGENT
@@ -39,8 +39,8 @@ def login():
     card, zip_code = get_login_info()
     values = {
             'loginButton': 'Login',
-            'loginButton.x': 45,
-            'loginButton.y': 19,
+            'loginButton.x': 58,
+            'loginButton.y': 13,
             'myCplLogin': 'Login',
             'patronId': card,
             'zipCode': zip_code,
