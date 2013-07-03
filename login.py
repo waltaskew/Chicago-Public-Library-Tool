@@ -15,8 +15,7 @@ HEADERS = {
 }
 
 def get_login_info():
-    """Read login credentail from a config file.
-    """
+    """Read login credentails from a config file."""
     config = ConfigParser.RawConfigParser()
     config.read(LOGIN_FILE)
     card = config.get(LOGIN_SECTION, 'card_number')
@@ -24,8 +23,7 @@ def get_login_info():
     return card, zip_code
 
 def get_opener():
-    """Return a url opener that handles cookies.
-    """
+    """Return a url opener that handles cookies."""
     cookie_jar = cookielib.CookieJar()
     opener = urllib2.build_opener(urllib2.HTTPCookieProcessor(cookie_jar))
     return opener
